@@ -17,7 +17,17 @@ io.on('connection',(socket) =>{
     socket.on('disconnect',() =>{
     console.log("client disconnect");
 })
-  
+  socket.emit('newMessage', {
+     from:"Admin",
+      text:"Welcome to chat app",
+      createAt:new Date().getTime()
+  });
+    
+    socket.broadcast.emit('newMessage', {
+        from:"admin",
+        text:"Hello new user",
+        createAt:new Date().getTime()
+    })
     
    socket.on('createMessage', (message)=>{
              console.log('createMessage',message);
@@ -26,6 +36,10 @@ io.on('connection',(socket) =>{
         text:message.text,
            createAt:new Date().getTime()
        });
+//       socket.broadcast.emit('newMessage',{
+//          from:message.from,
+//          text:message.text 
+//       });
              });
 })
 
