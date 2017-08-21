@@ -1,8 +1,9 @@
-var generateMessage = (from ,text) =>{
+var generateMessage = (from ,text,port) =>{
     return {
         from,
         text,
-        createAt: new Date().getTime()
+        createAt: new Date().getTime(),
+        port
     };
 };
 
